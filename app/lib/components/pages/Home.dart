@@ -5,12 +5,12 @@ import 'dart:io';
 
 import 'awareness_page.dart'; // Import AwarenessPage here
 
-class HomePage extends StatefulWidget {
+class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<HomePage> {
+class _HomeState extends State<Home> {
   String userName = "User";
 
   @override
@@ -23,16 +23,20 @@ class _HomeState extends State<HomePage> {
     try {
       // Provide the path to your db.json file
       final file = File('lib/data/db.json'); // Adjust the path as needed
-      final String response = await file.readAsString();
+      if (await file.exists()) {
+        final String response = await file.readAsString();
 
-      // Parse JSON and extract the user's name
-      final data = json.decode(response);
-      setState(() {
-        userName = data['user']['name'] ?? "User";
-      });
+        // Parse JSON and extract the user's name
+        final data = json.decode(response) as Map<String, dynamic>;
+        setState(() {
+          userName = data['user']?['name'] ?? "User";
+        });
+      } else {
+        throw Exception('File not found');
+      }
     } catch (e) {
       // Handle errors, such as file not found
-      print('Error reading db.json: $e');
+      debugPrint('Error reading db.json: $e');
       setState(() {
         userName = "User"; // Fallback value
       });
@@ -105,7 +109,8 @@ class HomeButton extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
 
-  HomeButton({required this.title, required this.onTap});
+  const HomeButton({required this.title, required this.onTap, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
