@@ -132,7 +132,7 @@ class AwarenessPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {},
                   child: Text(actionText),
-                  style: ElevatedButton.styleFrom(primary: Colors.blue),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 ),
             ],
           ),

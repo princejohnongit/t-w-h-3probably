@@ -11,10 +11,8 @@ class _ChatPageState extends State<ChatPage> {
   TextEditingController _controller = TextEditingController();
   List<Map<String, String>> chatMessages = [];
 
-  // Replace with your actual Gemini API key
-  final String apiKey = 'AIzaSyABDkYOA9yQoQ39miQU5FimerMITrMwmQM'; 
+  final String apiKey = 'AIzaSyABDkYOA9yQoQ39miQU5FimerMITrMwmQM';
 
-  // Send the user's message to Gemini API
   Future<void> sendMessage(String userMessage) async {
     setState(() {
       chatMessages.add({'sender': 'user', 'message': userMessage});
@@ -22,15 +20,10 @@ class _ChatPageState extends State<ChatPage> {
 
     final url = Uri.parse("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$apiKey");
     
-    final headers = {
-      'Content-Type': 'application/json',
-    };
-    
+    final headers = {'Content-Type': 'application/json'};
     final body = json.encode({
       'contents': [
-        {
-          'parts': [{'text': userMessage}]
-        }
+        {'parts': [{'text': userMessage}]}
       ]
     });
 
@@ -65,72 +58,38 @@ class _ChatPageState extends State<ChatPage> {
       body: Column(
         children: [
           Expanded(
-            child: Container(
-              color: Colors.blue[50],
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'AI Chat',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            child: ListView.builder(
+              itemCount: chatMessages.length,
+              itemBuilder: (context, index) {
+                final message = chatMessages[index];
+                return ListTile(
+                  title: Align(
+                    alignment: message['sender'] == 'user'
+                        ? Alignment.centerRight
+                        : Alignment.centerLeft,
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: message['sender'] == 'user'
+                            ? Colors.blue
+                            : Colors.grey[300],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        message['message']!,
+                        style: TextStyle(
+                          color: message['sender'] == 'user'
+                              ? Colors.white
+                              : Colors.black,
+                        ),
+                      ),
                     ),
                   ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: chatMessages.length,
-                      itemBuilder: (context, index) {
-                        final message = chatMessages[index];
-                        return ListTile(
-                          title: Align(
-                            alignment: message['sender'] == 'user'
-                                ? Alignment.centerRight
-                                : Alignment.centerLeft,
-                            child: Container(
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                color: message['sender'] == 'user'
-                                    ? Colors.blue
-                                    : Colors.grey[300],
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Text(
-                                message['message']!,
-                                style: TextStyle(
-                                  color: message['sender'] == 'user'
-                                      ? Colors.white
-                                      : Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
+                );
+              },
             ),
           ),
           Divider(height: 1, color: Colors.black),
-          Container(
-            color: Colors.green[50],
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Professional Support',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                // Blank space for professional support section
-                Expanded(
-                  child: Container(),
-                ),
-              ],
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
