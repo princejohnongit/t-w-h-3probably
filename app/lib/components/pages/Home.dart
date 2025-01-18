@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<HomePage> {
+class _HomeState extends State<Home> {
   String userName = "User";
 
   @override
@@ -27,7 +27,17 @@ class _HomeState extends State<HomePage> {
       final file = File('lib/data/db.json'); // Adjust the path as needed
       if (await file.exists()) {
         final String response = await file.readAsString();
+      if (await file.exists()) {
+        final String response = await file.readAsString();
 
+        // Parse JSON and extract the user's name
+        final data = json.decode(response) as Map<String, dynamic>;
+        setState(() {
+          userName = data['user']?['name'] ?? "User";
+        });
+      } else {
+        throw Exception('File not found');
+      }
         // Parse JSON and extract the user's name
         final data = json.decode(response) as Map<String, dynamic>;
         setState(() {
@@ -38,6 +48,7 @@ class _HomeState extends State<HomePage> {
       }
     } catch (e) {
       // Handle errors, such as file not found
+      debugPrint('Error reading db.json: $e');
       debugPrint('Error reading db.json: $e');
       setState(() {
         userName = "User"; // Fallback value

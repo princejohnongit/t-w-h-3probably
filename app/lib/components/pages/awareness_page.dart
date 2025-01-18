@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:share_plus/share_plus.dart';
 
 class AwarenessPage extends StatelessWidget {
   const AwarenessPage({super.key});
@@ -94,12 +93,48 @@ class AwarenessPage extends StatelessWidget {
             ),
             const SizedBox(width: 16),
             Text(
-              title,
+              'Welcome to the Awareness Page!',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: color,
               ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20),
+            Text(
+              'This page is designed to provide resources, tips, and information to improve your awareness.',
+              style: TextStyle(fontSize: 16),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 30),
+            AwarenessButton(
+              title: 'Learn More',
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text('Learn More'),
+                      content: Text(
+                        'This is a placeholder for detailed awareness information. Replace this with your content.',
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: Text('Close'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            ),
+            SizedBox(height: 20),
+            AwarenessButton(
+              title: 'Go Back',
+              onTap: () {
+                Navigator.pop(context);
+              },
             ),
           ],
         ),
