@@ -18,12 +18,17 @@ class _ChatPageState extends State<ChatPage> {
       chatMessages.add({'sender': 'user', 'message': userMessage});
     });
 
-    final url = Uri.parse("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$apiKey");
-    
+    final url = Uri.parse(
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$apiKey");
+
     final headers = {'Content-Type': 'application/json'};
     final body = json.encode({
       'contents': [
-        {'parts': [{'text': userMessage}]}
+        {
+          'parts': [
+            {'text': userMessage}
+          ]
+        }
       ]
     });
 
@@ -32,15 +37,24 @@ class _ChatPageState extends State<ChatPage> {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        String aiResponse = data['contents'][0]['parts'][0]['text'];
+
+        // Safely access the nested fields using null-aware operators
         
-        setState(() {
-          chatMessages.add({'sender': 'ai', 'message': aiResponse});
-        });
+        String? aiResponse = (data['candidates'] as List?)?.isNotEmpty == true
+            ? ((data['candidates'][0]['content']['parts'] as List?)?.isNotEmpty == true
+                ? data['candidates'][0]['content']['parts'][0]['text']
+                : null)
+            : null;
+
+        if (aiResponse != null) {
+          setState(() {
+            chatMessages.add({'sender': 'ai', 'message': aiResponse});
+          });
+        } else {
+          throw 'Unexpected response format.';
+        }
       } else {
-        setState(() {
-          chatMessages.add({'sender': 'ai', 'message': 'Error: Unable to get response from AI.'});
-        });
+        throw 'API error: ${response.statusCode}';
       }
     } catch (e) {
       setState(() {
