@@ -3,8 +3,14 @@ import '../pages/Home.dart';
 import '../pages/Profile.dart';
 import '../pages/Calender.dart';
 import '../pages/Chat.dart';
+import '../../utils/StorageHelper.dart';
 
 class Navbar extends StatefulWidget {
+  final StorageHelper storage;
+  final Map<String, dynamic> data;
+
+  Navbar({required this.storage, required this.data});
+
   @override
   _NavbarState createState() => _NavbarState();
 }
@@ -12,7 +18,6 @@ class Navbar extends StatefulWidget {
 class _NavbarState extends State<Navbar> {
   int _selectedIndex = 0;
 
-  // List of pages to display
   static List<Widget> _pages = <Widget>[
     HomePage(),
     ProfilePage(),
@@ -28,6 +33,8 @@ class _NavbarState extends State<Navbar> {
 
   @override
   Widget build(BuildContext context) {
+    final loggedInUser = widget.data['loggedInUser'];
+
     return Scaffold(
       body: Center(
         child: _pages.elementAt(_selectedIndex),
