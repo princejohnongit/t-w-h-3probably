@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class HelpForMyFriendPage extends StatelessWidget {
+  const HelpForMyFriendPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue.shade700,
         elevation: 0,
-        title: Center(
+        title: const Center(
           child: Text(
             'Help for My Friend',
             style: TextStyle(
@@ -77,12 +79,12 @@ class HelpForMyFriendPage extends StatelessWidget {
       child: GestureDetector(
         onTap: onPressed,
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          padding: EdgeInsets.all(16.0),
+          margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          padding: const EdgeInsets.all(16.0),
           decoration: BoxDecoration(
             color: color,
             borderRadius: BorderRadius.circular(16.0),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black26,
                 blurRadius: 6.0,
@@ -101,7 +103,7 @@ class HelpForMyFriendPage extends StatelessWidget {
                   color: textColor,
                 ),
               ),
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,7 +117,7 @@ class HelpForMyFriendPage extends StatelessWidget {
                         color: textColor,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       description,
                       style: TextStyle(

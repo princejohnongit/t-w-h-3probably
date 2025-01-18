@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class NotificationPage extends StatelessWidget {
+  const NotificationPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notification'),
+        title: const Text('Notification'),
         centerTitle: true,
         backgroundColor: Colors.blue.shade700,
         actions: [
@@ -25,7 +27,7 @@ class NotificationPage extends StatelessWidget {
         ],
       ),
       body: ListView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         children: [
           _buildSectionTitle('Today', 'Mark all'),
           _buildNotificationItem(
@@ -34,18 +36,18 @@ class NotificationPage extends StatelessWidget {
               title: 'Scheduled Change', time: '2 H', isHighlighted: false),
           _buildNotificationItem(
               title: 'Medical Notes', time: '3 H', isHighlighted: false),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           _buildSectionTitle('Yesterday', ''),
           _buildNotificationItem(
               title: 'Scheduled Appointment', time: '1 D', isHighlighted: false),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           _buildSectionTitle('15 April', ''),
           _buildNotificationItem(
               title: 'Medical History Update', time: '5 D', isHighlighted: false),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.chat), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
@@ -61,7 +63,7 @@ class NotificationPage extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
@@ -71,7 +73,7 @@ class NotificationPage extends StatelessWidget {
             onPressed: () {},
             child: Text(
               actionText,
-              style: TextStyle(color: Colors.blue),
+              style: const TextStyle(color: Colors.blue),
             ),
           ),
       ],
@@ -81,8 +83,8 @@ class NotificationPage extends StatelessWidget {
   Widget _buildNotificationItem(
       {required String title, required String time, bool isHighlighted = false}) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.0),
-      padding: EdgeInsets.all(16.0),
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color: isHighlighted ? Colors.blue.shade100 : Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -92,16 +94,16 @@ class NotificationPage extends StatelessWidget {
         children: [
           CircleAvatar(
             backgroundColor: Colors.blue.shade300,
-            child: Icon(
+            child: const Icon(
               Icons.notifications,
               color: Colors.white,
             ),
           ),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
           Expanded(
             child: Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
@@ -113,18 +115,18 @@ class NotificationPage extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {},
-                child: Text('Details'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue.shade300,
                   foregroundColor: Colors.white,
-                  minimumSize: Size(80, 30),
+                  minimumSize: const Size(80, 30),
                   padding: EdgeInsets.zero,
                 ),
+                child: Text('Details'),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
                 time,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14,
                   color: Colors.grey,
                 ),

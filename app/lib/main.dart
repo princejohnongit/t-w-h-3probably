@@ -7,7 +7,7 @@ import './utils/StorageHelper.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final storage = StorageHelper('./data/db.json');
+  final storage = StorageHelper('db.json');
   final data = await storage.readData();
 
   final bool isLoggedIn = data['loggedInUser'] != null;

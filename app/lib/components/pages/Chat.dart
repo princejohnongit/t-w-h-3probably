@@ -3,12 +3,14 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ChatPage extends StatefulWidget {
+  const ChatPage({super.key});
+
   @override
   _ChatPageState createState() => _ChatPageState();
 }
 
 class _ChatPageState extends State<ChatPage> {
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
   List<Map<String, String>> chatMessages = [];
 
   final String apiKey = 'AIzaSyABDkYOA9yQoQ39miQU5FimerMITrMwmQM';

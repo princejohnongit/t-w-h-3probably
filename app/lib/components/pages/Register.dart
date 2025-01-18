@@ -8,11 +8,11 @@ class RegisterPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  RegisterPage({required this.storage});
+  RegisterPage({super.key, required this.storage});
 
   String generateUMICode() {
     final random = Random();
-    return 'UMI' + (random.nextInt(90000) + 10000).toString();
+    return 'UMI${random.nextInt(90000) + 10000}';
   }
 
   @override

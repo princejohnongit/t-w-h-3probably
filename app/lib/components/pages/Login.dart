@@ -6,7 +6,7 @@ class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  LoginPage({required this.storage});
+  LoginPage({super.key, required this.storage});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class LoginPage extends StatelessWidget {
                 final data = await storage.readData();
                 final users = data['users'] as List<dynamic>;
                 for (var user in users) {
-                    print(user['email'] + " __ " + user['password']);
+                    print(user);
                   // if (user['email'] == emailController.text) {
                   // }
                 }

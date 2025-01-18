@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
 class AwarenessPage extends StatelessWidget {
+  const AwarenessPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Awareness',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -35,7 +37,7 @@ class AwarenessPage extends StatelessWidget {
                   color: Colors.indigoAccent,
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -49,7 +51,7 @@ class AwarenessPage extends StatelessWidget {
                   color: Colors.teal,
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -90,7 +92,7 @@ class AwarenessPage extends StatelessWidget {
                 color: color,
               ),
             ),
-            SizedBox(width: 16),
+            const SizedBox(width: 16),
             Text(
               title,
               style: TextStyle(
@@ -107,11 +109,13 @@ class AwarenessPage extends StatelessWidget {
 }
 
 class VideoSubPage extends StatelessWidget {
+  const VideoSubPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Videos',
+        title: const Text('Videos',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 24,
@@ -120,7 +124,7 @@ class VideoSubPage extends StatelessWidget {
         backgroundColor: Colors.indigoAccent,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -135,13 +139,13 @@ class VideoSubPage extends StatelessWidget {
                 link: 'https://www.youtube.com/watch?v=dummy1',
                 duration: '5:12',
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               _videoPreviewBox(
                 title: 'Sample Video 2',
                 link: 'https://www.youtube.com/watch?v=dummy2',
                 duration: '10:45',
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               _videoPreviewBox(
                 title: 'Sample Video 3',
                 link: 'https://www.youtube.com/watch?v=dummy3',
@@ -169,10 +173,10 @@ class VideoSubPage extends StatelessWidget {
             height: 200,
             width: double.infinity,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
               color: Colors.grey[300],
             ),
-            child: Center(
+            child: const Center(
               child: Icon(
                 Icons.play_circle_fill,
                 size: 64,
@@ -187,19 +191,19 @@ class VideoSubPage extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ElevatedButton.icon(
                       onPressed: () => Share.share(link),
-                      icon: Icon(Icons.share, size: 16),
-                      label: Text('Share'),
+                      icon: const Icon(Icons.share, size: 16),
+                      label: const Text('Share'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.indigoAccent,
                         shape: RoundedRectangleBorder(
@@ -226,11 +230,13 @@ class VideoSubPage extends StatelessWidget {
 }
 
 class PhotoSubPage extends StatelessWidget {
+  const PhotoSubPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Photos',
+        title: const Text('Photos',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 24,
@@ -239,7 +245,7 @@ class PhotoSubPage extends StatelessWidget {
         backgroundColor: Colors.teal,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -253,12 +259,12 @@ class PhotoSubPage extends StatelessWidget {
                 title: 'Sample Photo 1',
                 link: 'https://dummyimage.com/photo1',
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               _photoPreviewBox(
                 title: 'Sample Photo 2',
                 link: 'https://dummyimage.com/photo2',
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               _photoPreviewBox(
                 title: 'Sample Photo 3',
                 link: 'https://dummyimage.com/photo3',
@@ -284,10 +290,10 @@ class PhotoSubPage extends StatelessWidget {
             height: 200,
             width: double.infinity,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
               color: Colors.grey[300],
             ),
-            child: Center(
+            child: const Center(
               child: Icon(
                 Icons.image,
                 size: 64,
@@ -302,16 +308,16 @@ class PhotoSubPage extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 ElevatedButton.icon(
                   onPressed: () => Share.share(link),
-                  icon: Icon(Icons.share, size: 16),
-                  label: Text('Share'),
+                  icon: const Icon(Icons.share, size: 16),
+                  label: const Text('Share'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.teal,
                     shape: RoundedRectangleBorder(
@@ -329,11 +335,13 @@ class PhotoSubPage extends StatelessWidget {
 }
 
 class BlogSubPage extends StatelessWidget {
+  const BlogSubPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Blogs',
+        title: const Text('Blogs',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 24,
@@ -342,7 +350,7 @@ class BlogSubPage extends StatelessWidget {
         backgroundColor: Colors.deepOrange,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -356,12 +364,12 @@ class BlogSubPage extends StatelessWidget {
                 title: 'Sample Blog 1',
                 link: 'https://dummyblog.com/blog1',
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               _blogPreviewBox(
                 title: 'Sample Blog 2',
                 link: 'https://dummyblog.com/blog2',
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               _blogPreviewBox(
                 title: 'Sample Blog 3',
                 link: 'https://dummyblog.com/blog3',
@@ -387,16 +395,16 @@ class BlogSubPage extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             ElevatedButton.icon(
               onPressed: () => Share.share(link),
-              icon: Icon(Icons.share, size: 16),
-              label: Text('Share'),
+              icon: const Icon(Icons.share, size: 16),
+              label: const Text('Share'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.deepOrange,
                 shape: RoundedRectangleBorder(

@@ -1,34 +1,4 @@
-import 'dart:convert';
-import 'dart:io';
-import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart' as path;
-
-class StorageHelper {
-  final String fileName;
-  
-  StorageHelper(this.fileName);
-  
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
-
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/$fileName');
-  }
-
-  Future<Map<String, dynamic>> readData() async {
-    try {
-      final file = await _localFile;
-      if (await file.exists()) {
-        print("File Exists at: ${file.path}");
-        final content = await file.readAsString();
-        return json.decode(content);
-      } else {
-        print("File Does not Exist, creating new at: ${file.path}");
-        // Initialize with default data
-        final defaultData = {
+{
     "users": [
       {
         "id": 1,
@@ -230,23 +200,4 @@ class StorageHelper {
         ]
       }
     ]
-  };
-        // Write the default data
-        await writeData(defaultData);
-        return defaultData;
-      }
-    } catch (e) {
-      print("Error reading file: $e");
-      return {"users": [], "loggedInUser": null};
-    }
   }
-
-  Future<void> writeData(Map<String, dynamic> data) async {
-    try {
-      final file = await _localFile;
-      await file.writeAsString(json.encode(data));
-    } catch (e) {
-      throw Exception("Error writing file: $e");
-    }
-  }
-}

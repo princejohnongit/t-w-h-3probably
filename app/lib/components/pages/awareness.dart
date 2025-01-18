@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AwarenessPage extends StatelessWidget {
-  const AwarenessPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Awareness'),
+        title: Text('Awareness'),
         centerTitle: true,
         backgroundColor: Colors.blue.shade700,
       ),
@@ -19,12 +17,12 @@ class AwarenessPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'Sort By',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 DropdownButton<String>(
-                  items: const [
+                  items: [
                     DropdownMenuItem(
                       value: 'A-Z',
                       child: Text('A-Z'),
@@ -35,11 +33,11 @@ class AwarenessPage extends StatelessWidget {
                     ),
                   ],
                   onChanged: (value) {},
-                  hint: const Text('A-Z'),
+                  hint: Text('A-Z'),
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -47,7 +45,7 @@ class AwarenessPage extends StatelessWidget {
                 _buildToggleButton('Services', false),
               ],
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             _buildCard(
               context,
               title: 'Video:',
@@ -55,7 +53,7 @@ class AwarenessPage extends StatelessWidget {
               actionText: 'Make Appointment',
               color: Colors.blue.shade100,
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: 10),
             _buildCard(
               context,
               title: 'Image:',
@@ -63,7 +61,7 @@ class AwarenessPage extends StatelessWidget {
               actionText: 'Make Appointment',
               color: Colors.pink.shade100,
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: 10),
             _buildCard(
               context,
               title: 'Blog',
@@ -76,7 +74,7 @@ class AwarenessPage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
+        items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.chat), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
@@ -93,7 +91,7 @@ class AwarenessPage extends StatelessWidget {
           color: isSelected ? Colors.blue.shade300 : Colors.blue.shade100,
           borderRadius: BorderRadius.circular(10),
         ),
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.symmetric(vertical: 10),
         alignment: Alignment.center,
         child: Text(
           text,
@@ -113,7 +111,7 @@ class AwarenessPage extends StatelessWidget {
       required Color color,
       bool isBlog = false}) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(10),
@@ -123,24 +121,24 @@ class AwarenessPage extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10),
           Row(
             children: [
               Icon(icon, size: 40, color: Colors.black54),
-              const Spacer(),
+              Spacer(),
               if (actionText.isNotEmpty)
                 ElevatedButton(
                   onPressed: () {},
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                   child: Text(actionText),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 ),
             ],
           ),
           if (isBlog)
-            const Padding(
-              padding: EdgeInsets.only(top: 10.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
               child: Text(
                 'Info',
                 style: TextStyle(fontWeight: FontWeight.bold),

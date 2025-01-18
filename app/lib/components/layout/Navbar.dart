@@ -9,7 +9,7 @@ class Navbar extends StatefulWidget {
   final StorageHelper storage;
   final Map<String, dynamic> data;
 
-  Navbar({required this.storage, required this.data});
+  const Navbar({super.key, required this.storage, required this.data});
 
   @override
   _NavbarState createState() => _NavbarState();
@@ -18,7 +18,7 @@ class Navbar extends StatefulWidget {
 class _NavbarState extends State<Navbar> {
   int _selectedIndex = 0;
 
-  static List<Widget> _pages = <Widget>[
+  static final List<Widget> _pages = <Widget>[
     HomePage(),
     ProfilePage(),
     CalendarPage(),
