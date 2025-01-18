@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'dart:io';
 
+import 'awareness_page.dart'; // Import AwarenessPage here
+
 class HomePage extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -17,25 +19,26 @@ class _HomeState extends State<HomePage> {
     loadUserName();
   }
 
-Future<void> loadUserName() async {
-  try {
-    // Provide the path to your db.json file
-    final file = File('lib/data/db.json'); // Adjust the path as needed
-    final String response = await file.readAsString();
+  Future<void> loadUserName() async {
+    try {
+      // Provide the path to your db.json file
+      final file = File('lib/data/db.json'); // Adjust the path as needed
+      final String response = await file.readAsString();
 
-    // Parse JSON and extract the user's name
-    final data = json.decode(response);
-    setState(() {
-      userName = data['user']['name'] ?? "User";
-    });
-  } catch (e) {
-    // Handle errors, such as file not found
-    print('Error reading db.json: $e');
-    setState(() {
-      userName = "User"; // Fallback value
-    });
+      // Parse JSON and extract the user's name
+      final data = json.decode(response);
+      setState(() {
+        userName = data['user']['name'] ?? "User";
+      });
+    } catch (e) {
+      // Handle errors, such as file not found
+      print('Error reading db.json: $e');
+      setState(() {
+        userName = "User"; // Fallback value
+      });
+    }
   }
-}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +68,14 @@ Future<void> loadUserName() async {
             HomeButton(
               title: 'Consultation',
               onTap: () => navigateTo(context, 'Consultation Page'),
+            ),
+            SizedBox(height: 20),
+            HomeButton(
+              title: 'Awareness', // New button for Awareness
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AwarenessPage()),
+              ),
             ),
           ],
         ),
