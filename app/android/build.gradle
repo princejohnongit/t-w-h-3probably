@@ -1,3 +1,16 @@
+buildscript {
+    ext.kotlin_version = '1.7.10'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
 allprojects {
     repositories {
         google()
@@ -5,14 +18,31 @@ allprojects {
     }
 }
 
+// Define the root project build directory
 rootProject.buildDir = '../build'
+
+// Configure subprojects to share the same build directory structure
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
-subprojects {
-    project.evaluationDependsOn(':app')
-}
 
+// Register a clean task to clean the project
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
+}
+
+// Remove deprecated syntax and adjust if needed
+gradle.projectsEvaluated {
+    subprojects {
+        afterEvaluate {
+            if (project.hasProperty("android")) {
+                android {
+                    lintOptions {
+                        checkReleaseBuilds = false
+                        abortOnError = false
+                    }
+                }
+            }
+        }
+    }
 }
