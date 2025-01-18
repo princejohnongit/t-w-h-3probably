@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   final StorageHelper storage;
   final Map<String, dynamic> data;
 
-  MyApp({required this.isLoggedIn, required this.storage, required this.data});
+  const MyApp({super.key, required this.isLoggedIn, required this.storage, required this.data});
 
   @override
   Widget build(BuildContext context) {

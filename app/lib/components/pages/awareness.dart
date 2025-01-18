@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AwarenessPage extends StatelessWidget {
+  const AwarenessPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -131,8 +133,8 @@ class AwarenessPage extends StatelessWidget {
               if (actionText.isNotEmpty)
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text(actionText),
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                  child: Text(actionText),
                 ),
             ],
           ),
