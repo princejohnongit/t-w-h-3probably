@@ -34,15 +34,15 @@ tasks.register("clean", Delete) {
 // Remove deprecated syntax and adjust if needed
 gradle.projectsEvaluated {
     subprojects {
-        afterEvaluate {
-            if (project.hasProperty("android")) {
-                android {
-                    lintOptions {
-                        checkReleaseBuilds = false
-                        abortOnError = false
-                    }
-                }
-            }
-        }
+        // afterEvaluate {
+        //     if (project.hasProperty("android")) {
+        //         android {
+        //             lintOptions {
+        //                 checkReleaseBuilds = false
+        //                 abortOnError = false
+        //             }
+        //         }
+        //     }
+        // }
     }
 }

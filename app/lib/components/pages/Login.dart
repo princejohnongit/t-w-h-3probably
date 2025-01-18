@@ -33,9 +33,9 @@ class LoginPage extends StatelessWidget {
                 final data = await storage.readData();
                 final users = data['users'] as List<dynamic>;
                 for (var user in users) {
-                  if (user['email'] == emailController.text) {
                     print(user['email'] + " __ " + user['password']);
-                  }
+                  // if (user['email'] == emailController.text) {
+                  // }
                 }
                 final user = users.firstWhere(
                   (user) =>
