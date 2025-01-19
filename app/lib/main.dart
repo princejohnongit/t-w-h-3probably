@@ -1,40 +1,77 @@
 import 'package:flutter/material.dart';
-import './components/layout/Navbar.dart';
-import './components/pages/Login.dart';
-import './components/pages/Register.dart';
-import './utils/StorageHelper.dart';
+import 'package:app/components/pages/Register.dart';
+import 'package:app/utils/StorageHelper.dart';
+import 'package:app/components/pages/Login.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  final storage = StorageHelper('db.json');
-  final data = await storage.readData();
-
-  final bool isLoggedIn = data['loggedInUser'] != null;
-
-  runApp(MyApp(isLoggedIn: isLoggedIn, storage: storage, data: data));
-}
-
-class MyApp extends StatelessWidget {
-  final bool isLoggedIn;
-  final StorageHelper storage;
-  final Map<String, dynamic> data;
-
-  const MyApp({super.key, required this.isLoggedIn, required this.storage, required this.data});
+class WelcomePage extends StatelessWidget {
+  const WelcomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    final StorageHelper storage = StorageHelper(); // Instance of StorageHelper
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Together We Heal'),
+        centerTitle: true,
+        backgroundColor: Colors.deepPurple,
       ),
-      initialRoute: isLoggedIn ? '/' : '/login',
-      routes: {
-        '/': (context) => Navbar(storage: storage, data: data),
-        '/login': (context) => LoginPage(storage: storage),
-        '/register': (context) => RegisterPage(storage: storage),
-      },
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Text(
+              'Welcome to Together We Heal! Our app empowers individuals to heal and report incidents anonymously. Let\'s build a better world together.',
+              style: TextStyle(fontSize: 18, color: Colors.black87),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          const SizedBox(height: 30),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AnonymousReportPage(storage)),
+              );
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+            child: const Text('Report Anonymously'),
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LoginPage(storage: storage),
+                    ),
+                  );
+                },
+                child: const Text(
+                  'Login',
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RegisterPage(storage:storage)),
+                  );
+                },
+                child: const Text(
+                  'Register',
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
