@@ -4,7 +4,7 @@ import '../pages/Profile.dart';
 import '../pages/Calender.dart';
 import '../pages/Chat.dart';
 import '../../utils/StorageHelper.dart';
-
+import '../pages/umi.dart';
 class Navbar extends StatefulWidget {
   final StorageHelper storage;
   final Map<String, dynamic> data;
@@ -23,6 +23,7 @@ class _NavbarState extends State<Navbar> {
     ProfilePage(),
     CalendarPage(),
     ChatPage(),
+    UMIPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -56,6 +57,10 @@ class _NavbarState extends State<Navbar> {
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
             label: 'Chat',
+          ),
+           BottomNavigationBarItem(
+            icon: Icon(Icons.verified_user), // Icon for the UMI page
+            label: 'UMI',
           ),
         ],
         currentIndex: _selectedIndex,
